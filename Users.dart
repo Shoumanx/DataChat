@@ -23,7 +23,7 @@ class _Users extends State<Users> {
   Widget build(BuildContext context) =>
       Scaffold(
         appBar: AppBar(
-          title: Text('User Page'),
+          title: Text('${justUser.length > 0 ? '${justUser[0]['username']} page' : 'Not Found'} '),
           centerTitle: true,
           backgroundColor: Colors.amber,
         ),
@@ -59,20 +59,3 @@ class _Users extends State<Users> {
         ),
       );
 }
-
-
-
-Widget feild(TextEditingController x, String hint, String label, Icon icn) => Padding(
-  padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
-  child: TextField(
-    controller: x,
-    decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        hintText: hint,
-        icon: icn,
-        labelText: label
-    ),
-  ),
-);

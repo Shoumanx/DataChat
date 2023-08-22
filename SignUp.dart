@@ -1,10 +1,9 @@
 import 'dart:ui';
-import 'package:datachat/Theme/Color.dart';
-import 'package:datachat/Theme/Txt.dart';
+import 'Theme/Color.dart';
+import 'Theme/Txt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:datachat/Pages/Users.dart';
-import 'package:datachat/DataBase.dart';
+import 'DataBase.dart';
 import 'Login.dart';
 
 
@@ -24,30 +23,9 @@ class _SignState extends State<Sign> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
-  TextEditingController typeController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode _textFocusNode = FocusNode();
-
-
-  // void navigateToAdmin(BuildContext context) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => Admin()),
-  //   );
-  // }
-  void navigateToUsers(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Users()),
-    );
-  }
-  void navigateToLogin(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Login()),
-    );
-  }
 
   bool light = true;
 ////////////////////////////////////////////////////////////////////////////////
@@ -105,10 +83,12 @@ class _SignState extends State<Sign> {
                   String username = usernameController.text;
                   String password = passwordController.text;
                   String fullName = fullNameController.text;
-                  String type = typeController.text;
-                  userTable.insert(username,password, fullName, type);
+                  String type = '';
+                  if(light == true)   type = 'admin';
+                  else    type = 'user';
+                  userTable.insert(username, password, fullName, type);
                   if(type == 'admin'){
-                    // navigateToAdmin(context);
+                    navigateToAdmin(context);
                   }
                   else{
                     justUser = await userTable.showDataById(userTable.db, username, password);

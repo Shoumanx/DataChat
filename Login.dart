@@ -1,8 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Admin.dart';
 import 'DataBase.dart';
+import 'Delete.dart';
+import 'Show.dart';
 import 'SignUp.dart';
+import 'Update.dart';
 import 'Users.dart';
 List<Map> justUser = [];
 UserTable userTable=UserTable();
@@ -21,19 +25,6 @@ class _LoginState extends State<Login> {
   }
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  void navigateToUsers(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Users()),
-    );
-  }
-  void navigateToSign(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Sign()),
-    );
-  }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode _textFocusNode = FocusNode();
@@ -68,11 +59,10 @@ class _LoginState extends State<Login> {
                 MaterialButton(onPressed: () async {
                   String username = usernameController.text;
                   String password = passwordController.text;
-                  // userTable.insert(username, password, 'Mostafa Mahmoud Shouman', ' ');
                   justUser = await userTable.showDataById(userTable.db, username, password);
                   print(justUser);
-                  navigateToUsers(context);
-
+                  if(justUser[0]['type'] == 'admin')  navigateToAdmin(context);
+                  else    navigateToUsers(context);
                   },color: Color.fromARGB(255,54,0,255),child: Text('Sign In',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffeeeeee)),),),
                 SizedBox(width: 20,),
                 InkWell(
@@ -90,4 +80,49 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+}
+
+
+void navigateToUsers(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Users()),
+  );
+}
+void navigateToLogin(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Login()),
+  );
+}
+void navigateToShow(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Show()),
+  );
+}
+void navigateToUpdate(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Update()),
+  );
+}
+void navigateToDelete(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Delete()),
+  );
+}
+void navigateToSign(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Sign()),
+  );
+}
+
+void navigateToAdmin(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Admin()),
+  );
 }

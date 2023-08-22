@@ -1,9 +1,10 @@
 import 'dart:ui';
-import 'package:datachat/Theme/Color.dart';
-import 'package:datachat/Theme/Txt.dart';
+import 'Login.dart';
+import 'Theme/Color.dart';
+import 'Theme/Txt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+int getId = 0;
 class Admin extends StatefulWidget {
   @override
   _AdminState createState() => _AdminState();
@@ -56,7 +57,9 @@ class _AdminState extends State<Admin> {
                     decoration: BoxDecoration(color: Black,borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
                     child: ListView(children: [
                       Container(margin: EdgeInsets.symmetric(vertical: 10),
-                        child: MaterialButton(onPressed: (){},color: Colors.transparent,elevation: 0,
+                        child: MaterialButton(onPressed: (){
+                          navigateToSign(context);
+                        },color: Colors.transparent,elevation: 0,
                           child: ListTile(leading: Container(height: 60,width: 60,decoration: BoxDecoration(
                             color: White,borderRadius: BorderRadius.all(Radius.circular(10)),
 
@@ -67,7 +70,12 @@ class _AdminState extends State<Admin> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            getId = int.parse(Upd.text);
+                            justUser = await userTable.showDataByIdx(userTable.db, getId);
+                            print(justUser);
+                            navigateToUpdate(context);
+                          },
                           color: Colors.transparent,
                           elevation: 0,
                           child: ListTile(
@@ -111,7 +119,12 @@ class _AdminState extends State<Admin> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            getId = int.parse(Del.text);
+                            justUser = await userTable.showDataByIdx(userTable.db, getId);
+                            print(justUser);
+                            navigateToDelete(context);
+                          },
                           color: Colors.transparent,
                           elevation: 0,
                           child: ListTile(
@@ -153,7 +166,10 @@ class _AdminState extends State<Admin> {
                         ),
                       ),
                       Container(margin: EdgeInsets.symmetric(vertical: 10),
-                        child: MaterialButton(onPressed: (){},color: Colors.transparent,elevation: 0,
+                        child: MaterialButton(onPressed: () async {
+                          userTable.emp = await userTable.showData(userTable.db);
+                          navigateToShow(context);
+                        },color: Colors.transparent,elevation: 0,
                           child: ListTile(leading: Container(height: 60,width: 60,decoration: BoxDecoration(
                             color: White,borderRadius: BorderRadius.all(Radius.circular(10)),
 

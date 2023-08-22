@@ -40,13 +40,17 @@ class UserTable{
     return await x.rawQuery('select * from company');
   }
   showDataById(Database x, String user, String pass) async{
-    return await x.rawQuery('select username, password, fullName from company WHERE username = ? And password = ?',
+    return await x.rawQuery('select username, password, fullName, id, type from company WHERE username = ? And password = ?',
       [user, pass]);
   }
-  UpdateUsername(String user, int id)async{
+  showDataByIdx(Database x, int idx) async{
+    return await x.rawQuery('select username, password, fullName, type from company WHERE id = ?',
+        [idx]);
+  }
+  UpdateUsername(String user, String pass, String full, String t, int id)async{
     int n = await db.rawUpdate(
-        'UPDATE company SET username = ? WHERE id = ?',
-        [user , id]
+        'UPDATE company SET username = ?, password = ?, fullName = ?, type = ? WHERE id = ?',
+        [user, pass, full, t , id]
     );
     print('#Row $n inserted...');
   }

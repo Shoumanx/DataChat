@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:datachat/Theme/Color.dart';
+import 'package:datachat/Theme/Txt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/Users.dart';
-import 'Database.dart';
+import 'package:datachat/Pages/Users.dart';
+import 'package:datachat/DataBase.dart';
 import 'Login.dart';
 
 
@@ -46,6 +48,8 @@ class _SignState extends State<Sign> {
       MaterialPageRoute(builder: (context) => Login()),
     );
   }
+
+  bool light = true;
 ////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class _SignState extends State<Sign> {
       home: GestureDetector(
         onTap: (){FocusScope.of(context).requestFocus(FocusNode());},
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
             appBar: AppBar(shadowColor: Color.fromARGB(255,54,0,255),backgroundColor: Color.fromARGB(255,54,0,255),shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),title: Text('Sign Up'),),
             backgroundColor: Color.fromARGB(255,54,0,255),
             body:Column(crossAxisAlignment: CrossAxisAlignment.center,children: [
@@ -71,12 +76,28 @@ class _SignState extends State<Sign> {
                 Row(mainAxisAlignment: MainAxisAlignment.center,children: [
                   Container(width: 300,child: TextFormField(obscureText: true,controller: passwordController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Password'),))
                 ],),
+                SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center,children: [
                   Container(width: 300,child: TextFormField(obscureText: true,controller: fullNameController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Full Name'),))
                 ],),
-                Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                  Container(width: 300,child: TextFormField(obscureText: true,controller: typeController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Type'),))
-                ],),
+                SizedBox(height: 20,),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   SwitchT('Are you admin?'.toUpperCase()),
+                   Switch(
+                     // This bool value toggles the switch.
+                     value: light,
+                     activeColor: White,
+                     onChanged: (bool value) {
+                       // This is called when the user toggles the switch.
+                       setState(() {
+                         light = value;
+                       });
+                     },
+                   )
+                 ],
+                ),
+
               ],)),
 
               Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [

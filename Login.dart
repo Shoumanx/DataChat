@@ -1,12 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_training/Files/Flutter%201/Menu.dart';
-import '5_ChatApp.dart';
-import 'Database.dart';
+import 'DataBase.dart';
 import 'SignUp.dart';
-
-
+import 'Users.dart';
+List<Map> justUser = [];
+UserTable userTable=UserTable();
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -15,24 +14,18 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
-  UserTable userTable=UserTable();
+
   void initState() {
     super.initState();
-    userTable.createDBandTable();
+    userTable.createDatebaseAndTable();
   }
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void navigateToHomePage(BuildContext context) {
+  void navigateToUsers(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => chatApp()),
-    );
-  }
-  void navigateToLogin(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Login()),
+      MaterialPageRoute(builder: (context) => Users()),
     );
   }
   void navigateToSign(BuildContext context) {
@@ -72,15 +65,14 @@ class _LoginState extends State<Login> {
                 ],),
               ],)),
               Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                MaterialButton(onPressed: ()async{
+                MaterialButton(onPressed: () async {
                   String username = usernameController.text;
                   String password = passwordController.text;
-                  bool isLoggedIn = await userTable.checkCredentials(username, password);
-                  if (isLoggedIn) {
-                    navigateToHomePage(context);
-                  } else {
-                    print('Invalid credentials');
-                  }
+                  // userTable.insert(username, password, 'Mostafa Mahmoud Shouman', ' ');
+                  justUser = await userTable.showDataById(userTable.db, username, password);
+                  print(justUser);
+                  navigateToUsers(context);
+
                   },color: Color.fromARGB(255,54,0,255),child: Text('Sign In',style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffeeeeee)),),),
                 SizedBox(width: 20,),
                 InkWell(

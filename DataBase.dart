@@ -14,8 +14,8 @@ class UserTable{
           d.execute('create table company '
               '(id integer primary key,'
               ' username text,'
-              'password text'
-              'fullName text'
+              'password text,'
+              'fullName text,'
               'type text)');
           print('Table Created....');
         },
@@ -39,8 +39,9 @@ class UserTable{
   showData(Database x) async{
     return await x.rawQuery('select * from company');
   }
-  showDataById(Database x, int idx) async{
-    return await x.rawQuery('select username from company WHERE id = idx');
+  showDataById(Database x, String user, String pass) async{
+    return await x.rawQuery('select username, password, fullName from company WHERE username = ? And password = ?',
+      [user, pass]);
   }
   UpdateUsername(String user, int id)async{
     int n = await db.rawUpdate(

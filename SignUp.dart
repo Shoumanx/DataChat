@@ -1,8 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_training/Files/Flutter%201/Menu.dart';
-import '5_ChatApp.dart';
+import 'package:untitled1/Users.dart';
 import 'Database.dart';
 import 'Login.dart';
 
@@ -17,20 +16,28 @@ class _SignState extends State<Sign> {
   UserTable userTable=UserTable();
   void initState() {
     super.initState();
-    userTable.createDBandTable();
+    userTable.createDatebaseAndTable();
   }
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController typeController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode _textFocusNode = FocusNode();
 
 
-  void navigateToHomePage(BuildContext context) {
+  // void navigateToAdmin(BuildContext context) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => Admin()),
+  //   );
+  // }
+  void navigateToUsers(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => chatApp()),
+      MaterialPageRoute(builder: (context) => Users()),
     );
   }
   void navigateToLogin(BuildContext context) {
@@ -39,13 +46,6 @@ class _SignState extends State<Sign> {
       MaterialPageRoute(builder: (context) => Login()),
     );
   }
-  void navigateToSign(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Sign()),
-    );
-  }
-
 ////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
@@ -71,19 +71,37 @@ class _SignState extends State<Sign> {
                 Row(mainAxisAlignment: MainAxisAlignment.center,children: [
                   Container(width: 300,child: TextFormField(obscureText: true,controller: passwordController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Password'),))
                 ],),
+                Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                  Container(width: 300,child: TextFormField(obscureText: true,controller: fullNameController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Full Name'),))
+                ],),
+                Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                  Container(width: 300,child: TextFormField(obscureText: true,controller: typeController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Type'),))
+                ],),
               ],)),
+
               Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                MaterialButton(onPressed: (){
+                MaterialButton(onPressed: () async {
                   String username = usernameController.text;
                   String password = passwordController.text;
-                  userTable.insertData(username,password);
+                  String fullName = fullNameController.text;
+                  String type = typeController.text;
+                  userTable.insert(username,password, fullName, type);
+                  if(type == 'admin'){
+                    // navigateToAdmin(context);
+                  }
+                  else{
+                    justUser = await userTable.showDataById(userTable.db, username, password);
+                    print(justUser);
+                    navigateToUsers(context);
+                  }
+
                 },color: Color.fromARGB(255,238,238,238),child: Text('Register',style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255,54,0,255)),),),
                 SizedBox(width: 20,),
                 InkWell(
                   onTap: (){
                     navigateToLogin(context);
                   },
-                  child: Text('Log In',style: TextStyle(
+                  child: Text('Cancel',style: TextStyle(
                     color: Color.fromARGB(255,238,238,238),
                     fontWeight: FontWeight.bold,
                   ),),

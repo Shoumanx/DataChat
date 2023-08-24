@@ -27,6 +27,7 @@ class _Delete extends State<Delete> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: White,
           body: Stack(
             children: [
@@ -61,7 +62,7 @@ class _Delete extends State<Delete> {
                   ),
                 ],
               ),
-              ListView(padding: EdgeInsets.fromLTRB(40,140,40,0),children: [
+              ListView(physics: FixedExtentScrollPhysics(),padding: EdgeInsets.fromLTRB(40,140,40,0),children: [
                 Container(
                   margin: EdgeInsets.all(25),
                   child: Stack(children: [
@@ -71,7 +72,7 @@ class _Delete extends State<Delete> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Primary,
+                        color: Colors.red,
                         borderRadius: BorderRadius.circular(100),
                       ), width: 175,height: 175,child: MaterialButton(onPressed: () async{
                         await userTable.deleteUsername(getId);

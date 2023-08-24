@@ -34,13 +34,15 @@ Widget showCard(BuildContext context, List data){
               );
             },
           ),
-          MaterialButton(onPressed: () async {
-            await userTable.deleteUsername(getId);
-            userTable.emp = await userTable.showData(userTable.db);
-            navigateToShowx(context);
-          },
-            color: Primary,
-            child: AdminTitleW('Delete'),)
+          Container(alignment: Alignment.bottomCenter,
+            child: MaterialButton(onPressed: () async {
+              await userTable.deleteUsername(getId);
+              userTable.emp = await userTable.showData(userTable.db);
+              navigateToShowx(context);
+            },
+              color: Primary,
+              child: AdminTitleW('Delete'),),
+          )
         ],
       )
   );

@@ -76,7 +76,7 @@ class _Delete extends State<Delete> {
                       ), width: 175,height: 175,child: MaterialButton(onPressed: () async{
                         await userTable.deleteUsername(getId);
                         navigateToAdmin(context);
-                        },shape: CircleBorder(),
+                        },shape: CircleBorder(),child: Icon((Icons.delete_forever),color: White,size: 75,)
                     ),
                     ),  //
                   ],alignment: Alignment.center,),

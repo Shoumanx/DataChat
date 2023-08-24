@@ -7,10 +7,8 @@ import '../SignUp.dart';
 import '../Users.dart';
 import '../Show.dart';
 
-
-
 void navigateToUsers(BuildContext context) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => Users()),
   );
@@ -23,6 +21,13 @@ void navigateToLogin(BuildContext context) {
 }
 void navigateToShow(BuildContext context) {
   Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Show()),
+  );
+}
+
+void navigateToShowx(BuildContext context) {
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => Show()),
   );

@@ -1,4 +1,4 @@
-
+import 'package:datachat/Pages/Navigation/Navigations.dart';
 import 'package:datachat/Widget/infoCards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +73,11 @@ class _Delete extends State<Delete> {
                       decoration: BoxDecoration(
                         color: Primary,
                         borderRadius: BorderRadius.circular(100),
-                      ), width: 175,height: 175,child: Icon(IconChecker('${justUser[0]['type']}'),color: Colors.white,size: 100,),
+                      ), width: 175,height: 175,child: MaterialButton(onPressed: () async{
+                        await userTable.deleteUsername(getId);
+                        navigateToAdmin(context);
+                        },shape: CircleBorder(),
+                    ),
                     ),  //
                   ],alignment: Alignment.center,),
                 ),
@@ -89,4 +93,3 @@ class _Delete extends State<Delete> {
     );
   }
 }
-

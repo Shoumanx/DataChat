@@ -55,6 +55,7 @@ class UserTable{
   }
   deleteUsername(int id) async{
     int count = await db.rawDelete('DELETE FROM company WHERE id = ?', [id]);
+    print('Row $count deleted....');
   }
 
 }

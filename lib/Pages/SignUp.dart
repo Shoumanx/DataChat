@@ -57,7 +57,7 @@ class _SignState extends State<Sign> {
                 ],),
                 SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                  Container(width: 300,child: TextFormField(obscureText: true,controller: fullNameController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Full Name'),))
+                  Container(width: 300,child: TextFormField(controller: fullNameController,decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),filled: true, fillColor: Color(0xffeeeeee),hintText: 'Full Name'),))
                 ],),
                 SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center,

@@ -1,13 +1,9 @@
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Admin.dart';
-import 'DataBase.dart';
-import 'Delete.dart';
-import 'Show.dart';
-import 'SignUp.dart';
-import 'Update.dart';
-import 'Users.dart';
+import 'dart:ui';
+import '../Database/DataBase.dart';
+import 'Navigation/Navigations.dart';
+
 List<Map> justUser = [];
 UserTable userTable=UserTable();
 class Login extends StatefulWidget {
@@ -80,49 +76,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-}
-
-
-void navigateToUsers(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Users()),
-  );
-}
-void navigateToLogin(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Login()),
-  );
-}
-void navigateToShow(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Show()),
-  );
-}
-void navigateToUpdate(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Update()),
-  );
-}
-void navigateToDelete(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Delete()),
-  );
-}
-void navigateToSign(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Sign()),
-  );
-}
-
-void navigateToAdmin(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Admin()),
-  );
 }

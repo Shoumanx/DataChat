@@ -1,10 +1,11 @@
-import 'dart:ui';
-import 'Theme/Color.dart';
-import 'Theme/Txt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'DataBase.dart';
+import 'dart:ui';
+import '../Database/DataBase.dart';
+import '../Theme/Color.dart';
+import '../Theme/Txt.dart';
 import 'Login.dart';
+import 'Navigation/Navigations.dart';
 
 
 class Sign extends StatefulWidget {
@@ -77,7 +78,6 @@ class _SignState extends State<Sign> {
                 ),
 
               ],)),
-
               Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
                 MaterialButton(onPressed: () async {
                   String username = usernameController.text;

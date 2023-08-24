@@ -1,9 +1,12 @@
 import 'dart:ui';
+import '../Theme/Color.dart';
+import '../Theme/Txt.dart';
 import 'Login.dart';
-import 'Theme/Color.dart';
-import 'Theme/Txt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Navigation/Navigations.dart';
+
+
 int getId = 0;
 class Admin extends StatefulWidget {
   @override
@@ -53,7 +56,7 @@ class _AdminState extends State<Admin> {
             children: [
               Stack(
                 children: [
-                  Container(height: 650,padding: EdgeInsets.symmetric(vertical: 100),
+                  Container(height: 800,padding: EdgeInsets.symmetric(vertical: 100),
                     decoration: BoxDecoration(color: Black,borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
                     child: ListView(children: [
                       Container(margin: EdgeInsets.symmetric(vertical: 10),
@@ -175,6 +178,16 @@ class _AdminState extends State<Admin> {
 
                           ),child: Icon(CupertinoIcons.line_horizontal_3_decrease_circle_fill,color: Primary,),),
                             title: AdminTitle('Show User'),subtitle: AdminSub('Show the current Users'),),
+                        ),
+                      ),
+                      Container(margin: EdgeInsets.symmetric(vertical: 100),
+                        child: MaterialButton(onPressed: () async {
+                          navigateToUsers(context);
+                        },color: Colors.transparent,elevation: 0,
+                          child: ListTile(leading: Container(height: 60,width: 60,decoration: BoxDecoration(
+                            color: Primary,borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),child: Icon(CupertinoIcons.info_circle_fill,color: Black,),),
+                            title: AdminTitleW('Admin Details'),subtitle: AdminSub('Details about current admin'),),
                         ),
                       ),
                     ],),

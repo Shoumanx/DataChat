@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'Admin.dart';
 import 'Login.dart';
@@ -9,12 +8,14 @@ class Show extends StatefulWidget{
   _Show createState() => _Show();
 }
 class _Show extends State<Show> {
-  @override
+
+////////////////////////////////////////////////////////////////////////////////
   void initState() {
     super.initState();
     userTable.createDatebaseAndTable();
   }
-  @override
+////////////////////////////////////////////////////////////////////////////////
+
   Widget build(BuildContext context) =>
       Scaffold(
         appBar: AppBar(
@@ -83,11 +84,4 @@ class _Show extends State<Show> {
 }
 
 Widget txt({required String x, clr = Colors.black, double sz = 15, TextAlign ta = TextAlign.start})
-=> Text(
-  x,
-  style: TextStyle(
-      color: clr,
-      fontSize: sz
-  ),
-  textAlign: ta,
-);
+=> Text(x, style: TextStyle(color: clr,fontSize: sz), textAlign: ta,);

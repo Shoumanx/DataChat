@@ -3,8 +3,9 @@ import 'package:sqflite/sqflite.dart';
 class UserTable{
   late Database db;
   List emp = [];
-  createDatebaseAndTable() async
-  {
+
+
+  createDatebaseAndTable() async {
     db = await openDatabase(
         'u.db',
         version: 1,
@@ -25,7 +26,6 @@ class UserTable{
         }
     );
   }
-
   insert(String user, String pass, String name, String type){
     db.transaction((txn) async{
       txn.rawInsert('insert into company (username, password, fullName, type) values ("$user", "$pass", "$name", "$type")').then((value){
@@ -35,7 +35,6 @@ class UserTable{
       });
     });
   }
-
   showData(Database x) async{
     return await x.rawQuery('select * from company');
   }
@@ -54,7 +53,6 @@ class UserTable{
     );
     print('#Row $n inserted...');
   }
-
   deleteUsername(int id) async{
     int count = await db.rawDelete('DELETE FROM company WHERE id = ?', [id]);
   }

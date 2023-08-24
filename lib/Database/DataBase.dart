@@ -51,7 +51,7 @@ class UserTable{
         'UPDATE company SET username = ?, password = ?, fullName = ?, type = ? WHERE id = ?',
         [user, pass, full, t , id]
     );
-    print('#Row $n inserted...');
+    print('#Row $n Updated...');
   }
   deleteUsername(int id) async{
     int count = await db.rawDelete('DELETE FROM company WHERE id = ?', [id]);

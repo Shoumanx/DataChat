@@ -37,7 +37,7 @@ class _Show extends State<Show> {
                       elevation: 5,
                       child: ListTile(
                         onTap: () {
-
+                            getId = userTable.emp[i]['id'];
                         },
                         title: txt(x: userTable.emp[i]['username'], clr: Colors.black),
                         leading: CircleAvatar(
@@ -45,7 +45,7 @@ class _Show extends State<Show> {
                           child: txt(x: userTable.emp[i]['id'].toString()),
                         ),
                         subtitle: txt(x: userTable.emp[i]['fullName'], clr: Colors.amber),
-                        trailing: txt(x: userTable.emp[i]['password'], clr: Colors.amber),
+                        trailing: txt(x: userTable.emp[i]['type'], clr: Colors.amber),
                       ),
                     ),
                   Padding(
@@ -55,10 +55,8 @@ class _Show extends State<Show> {
                       children: [
                         MaterialButton(
                           onPressed: () async {
-                            print(justUser);
                             await userTable.deleteUsername(getId);
-                            justUser = await userTable.showDataByIdx(userTable.db, getId);
-                            print(justUser);
+                            userTable.emp = await userTable.showData(userTable.db);
                             setState(() {
 
                             });
